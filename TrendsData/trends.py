@@ -13,12 +13,20 @@ search_trend.plot(label='search_trend')
 plt.legend()
 plt.show()
 
+data['order'] = 9*2
+data['order'][data['Search'] < 90] = 8*2 # Long if search volume goes down relative to mavg.
+data['order'][data['Search'] < 75] = 7*2 # Long if search volume goes down relative to mavg.
+data['order'][data['Search'] < 60] = 4*2 # Long if search volume goes down relative to mavg.
+data['order'][data['Search'] < 40] = 3*2 # Long if search volume goes down relative to mavg.
+data['order'][data['Search'] < 25] = 2*2 # Long if search volume goes down relative to mavg.
 
-data['order'] = 0
-data['order'][data['Search'] > search_trend] = -1 # Short if search volume goes up relative to mavg.
-data['order'][data['Search'] < search_trend] = 1 # Long if search volume goes down relative to mavg.
-print data
 
+data['order'][data['Search'] > search_trend+5] = data['order'] + 4; # Short if search volume goes up relative to mavg.
+data['order'][data['Search'] < search_trend-5] = data['order'] + 4; # Long if search volume goes down relative to mavg.
+data.plot(label = 'order')
+plt.show()
+
+'''
 data['ret_search'] = data['Search'].pct_change()
 print data
 
@@ -30,3 +38,4 @@ print data
 (1 + data.ret_aapl).cumprod().plot();
 plt.ylabel('Portfolio value')
 plt.show()
+'''
