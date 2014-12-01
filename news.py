@@ -35,11 +35,11 @@ def getSentiments():
 			write_rss(rss_aapl,fh)
 			cn = cname.split(' ')
 			#proc = subprocess.Popen(['curl','--data-binary','@AAPL.txt',"http://www.sentiment140.com/api/bulkClassify?query=Apple"], stdout=subprocess.PIPE, shell=True)
-			cmdString = 'curl --data-binary @NewsData/'+name+'.txt "http://www.sentiment140.com/api/bulkClassify?query=Apple"'
+			#cmdString = 'curl --data-binary @NewsData/'+name+'.txt "http://www.sentiment140.com/api/bulkClassify?query=Apple"'
 			#cmdString = 'curl --data-binary @AAPL.txt "http://www.sentiment140.com/api/bulkClassify?query=Apple"'
-			output = subprocess.check_output(cmdString,shell=True)
-			print cn[0]
-			lines = output.split('\n')
+			#output = subprocess.check_output(cmdString,shell=True)
+			#print cn[0]
+			#lines = output.split('\n')
 			sum = 0
 			for line in lines:
 			    sent=line.split(',')
